@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+   
+</head>
+<body>
+       <div id="app">
+        <div class ="calculator">
+            
+            <div class ="calc">
+                {{ calc }}
+            </div>
+        
+        <div class ="value">
+            {{ value }}
+        </div>
+    
+        <div class ="buttons">
+        <div v-for="x in 10" v-on:click="setModifier(x-1)" class="btn"> 
+                {{ x-1 }}
+        </div> 
+            <div v-on:click="add()" class="btn">
+                +
+                </div>
+                <div v-on:click="substract()" class="btn">
+                -
+        </div>
+                
+                <div v-on:click="divide()" class="btn">
+                /
+                </div>
+                <div v-on:click="multiply" class="btn">
+                x
+                </div>
+               
+                <div v-on:click="decimal()" class="btn">
+                    .
+                   </div>
+            
+            <div v-on:click="reset()" class="btn">
+             AC
+            </div>
+            <div v-on:click="calculate()" class="btn">
+                =
+                </div>
+           
+    </div>
+    </div>
+    </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.js">	
+    </script>
+<script>
+            
+        let app = new Vue ({
+        el: '#app',
+        data: {
+            calc: '',
+            value: null,
+        },
+        methods: {
+            add () {
+                this.calc += '+'
+            },
+                subract () {
+                this.calc += '-'
+            },
+                multiply () {
+                this.calc += 'x'
+            },
+                divide () {
+                this.calc += '/'
+            },
+            decimal () {
+                this.calc += '.'
+            },
+                setModifier (x) {
+                this.calc += x
+            },
+                    calculate () {
+                this.value = eval(this.calc)
+                        this.calc = this.value 
+        },
+            reset () {
+                this.value = null
+                this.calc = ''
+            },
+            key(e) {
+                console.log(e.keyCode)
+            }
+        }
+    })
+    
+    </script>
+    <style>
+
+*,*:before, *:after{
+	box-sizing: boder-box;
+}
+body{
+	background: gold;
+	background-size: cover;
+	color: #fff;
+	font-family: san serif;
+	width: 100vw;
+	height: 100vh;
+	position: fixed;
+	top: 0;
+	left: 0;
+	display: flex;
+	justify-content: center;
+align-items: center;
+	font-size: 20px;
+	text-align: center;
+}
+
+.calculator{
+	width: 320px;
+	background-color: green;
+   
+	border-radius: 5px;
+	padding: 20px;
+}
+.buttons{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+		width: 280px;
+}
+
+.btn{
+	flex: 0 0 90px;
+	height: 63px;
+	border: 1px solid #999;
+	line-height: 61px;
+	transition: all 0.8s;
+	border-radius: 3px;
+	}
+
+.btn:hover{
+	background-color: blue;
+	border-color: #999;
+	color: #fff;
+	cursor: pointer;
+	transition: all 0.25s;
+}
+
+.calc{
+height: 30px;
+line-height: 30px;
+background-color: #999;
+border-radius: 5px;
+min-height: 60px;
+font-size: 30px;
+
+}
+
+.value{
+	height: 50px;
+line-height: 50px;
+	color: #fff;
+	font-size: 30px;
+    
+}
+    </style>
+    </body>
+</body>
+</html>
